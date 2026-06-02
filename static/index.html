@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nike Shop - Premium Footwear Experience</title>
+    <meta name="description" content="Explore and buy the latest Nike collections including Men, Women, and Kids collections with interactive shopping experience.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-mode">
+    
+    <!-- Header/Navbar -->
+    <header class="navbar" id="main-header">
+        <div class="nav-container">
+            <a href="#" class="logo-link" id="logo-link">
+                <i class="fa-brands fa-square-victory logo-icon"></i>
+                <span class="logo-text">NIKE</span>
+            </a>
+            
+            <nav class="nav-menu" id="nav-menu">
+                <a href="#" class="nav-item active" data-category="all" id="nav-all">All Collections</a>
+                <a href="#" class="nav-item" data-category="men" id="nav-men">Men</a>
+                <a href="#" class="nav-item" data-category="women" id="nav-women">Women</a>
+                <a href="#" class="nav-item" data-category="kids" id="nav-kids">Kids</a>
+            </nav>
+
+            <div class="nav-actions">
+                <div class="search-bar-container">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <input type="text" id="search-input" placeholder="Search shoes...">
+                </div>
+                <button class="cart-btn" id="cart-toggle-btn" aria-label="Open Shopping Cart">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span class="cart-badge" id="cart-badge-count">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        
+        <!-- Hero Section -->
+        <section class="hero-section" id="hero-banner">
+            <div class="hero-bg-glow"></div>
+            <div class="hero-container">
+                <div class="hero-text-content">
+                    <span class="hero-tagline">New Season Arrivals</span>
+                    <h1 class="hero-title">STEP INTO THE <br><span class="gradient-text">FUTURE OF SPORT</span></h1>
+                    <p class="hero-description">Experience ultimate comfort and revolutionary design with our newly curated Nike Air Max and Jordan collections. Engineered for athletes, designed for everyone.</p>
+                    <div class="hero-cta-buttons">
+                        <button class="btn btn-primary" id="hero-shop-now">Shop Collections</button>
+                        <button class="btn btn-secondary" id="hero-learn-more">Explore Air Max</button>
+                    </div>
+                </div>
+                <div class="hero-image-wrapper">
+                    <div class="hero-circle-accent"></div>
+                    <img src="" alt="Featured Nike Shoe" class="hero-shoe-image" id="hero-shoe-img">
+                </div>
+            </div>
+        </section>
+
+        <!-- Product Catalog Section -->
+        <section class="catalog-section" id="catalog-section">
+            <div class="section-header">
+                <div>
+                    <h2 class="section-title">Explore Our Lineup</h2>
+                    <p class="section-subtitle">Select a category and choose your style</p>
+                </div>
+                <div class="filter-pills" id="category-filters">
+                    <button class="filter-pill active" data-category="all" id="pill-all">All</button>
+                    <button class="filter-pill" data-category="men" id="pill-men">Men</button>
+                    <button class="filter-pill" data-category="women" id="pill-women">Women</button>
+                    <button class="filter-pill" data-category="kids" id="pill-kids">Kids</button>
+                </div>
+            </div>
+
+            <!-- Loading Spinner -->
+            <div class="loading-state" id="loading-spinner">
+                <div class="spinner"></div>
+                <p>Loading Nike Collection...</p>
+            </div>
+
+            <!-- Empty State -->
+            <div class="empty-state hidden" id="empty-state-view">
+                <i class="fa-solid fa-shoe-prints empty-icon"></i>
+                <p class="empty-title">No Shoes Found</p>
+                <p class="empty-subtitle">Try adjusting your search query or filters.</p>
+            </div>
+
+            <!-- Products Grid -->
+            <div class="products-grid hidden" id="products-grid">
+                <!-- Dynamically populated product cards -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="logo-link">
+                    <i class="fa-brands fa-square-victory logo-icon"></i>
+                    <span class="logo-text">NIKE</span>
+                </div>
+                <p class="footer-tag">Elevating athletic performance and style since 1972.</p>
+            </div>
+            <div class="footer-links-grid">
+                <div class="footer-column">
+                    <h4>Shop Categories</h4>
+                    <ul>
+                        <li><a href="#" class="foot-cat-link" data-cat="men">Men's Sneakers</a></li>
+                        <li><a href="#" class="foot-cat-link" data-cat="women">Women's Sneakers</a></li>
+                        <li><a href="#" class="foot-cat-link" data-cat="kids">Kids' Footwear</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Developer Mode</h4>
+                    <ul>
+                        <li><a href="#" id="admin-panel-link"><i class="fa-solid fa-lock"></i> Store Admin Panel</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Nike, Inc. All rights reserved. Created for Nike Shop App.</p>
+        </div>
+    </footer>
+
+    <!-- Shopping Cart Sidebar Drawer (Aside) -->
+    <aside class="cart-drawer" id="cart-drawer">
+        <div class="cart-drawer-overlay" id="cart-drawer-overlay"></div>
+        <div class="cart-drawer-content">
+            <div class="cart-header">
+                <h3>Your Bag <span class="item-count-label" id="cart-count-label">(0)</span></h3>
+                <button class="close-drawer-btn" id="close-cart-btn" aria-label="Close Cart">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Empty Cart -->
+            <div class="cart-empty-view" id="cart-empty-view">
+                <i class="fa-solid fa-bag-shopping empty-cart-icon"></i>
+                <p>Your bag is empty.</p>
+                <button class="btn btn-primary" id="cart-start-shopping">Start Shopping</button>
+            </div>
+
+            <!-- Cart Items Container -->
+            <div class="cart-items-container hidden" id="cart-items-list">
+                <!-- Dynamically populated cart items -->
+            </div>
+
+            <!-- Cart Summary Panel -->
+            <div class="cart-summary hidden" id="cart-summary-panel">
+                <div class="summary-row">
+                    <span>Subtotal</span>
+                    <span id="cart-subtotal">₹0.00</span>
+                </div>
+                <div class="summary-row discount-row hidden" id="summary-discount-row">
+                    <span>Discount (10%)</span>
+                    <span class="discount-value" id="cart-discount">-₹0.00</span>
+                </div>
+                <div class="summary-row bag-charge-row">
+                    <label class="carry-bag-checkbox-label">
+                        <input type="checkbox" id="carry-bag-checkbox" checked>
+                        <span>Carry Bag (₹50 per item)</span>
+                    </label>
+                    <span id="cart-bag-charge">₹0.00</span>
+                </div>
+                <div class="summary-row total-row">
+                    <span>Estimated Total</span>
+                    <span id="cart-final-total">₹0.00</span>
+                </div>
+                <button class="btn btn-primary btn-block checkout-btn" id="proceed-checkout-btn">
+                    Proceed to Checkout
+                </button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Checkout Modal -->
+    <div class="modal-overlay hidden" id="checkout-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Secure Checkout</h2>
+                <button class="close-modal-btn" id="close-checkout-btn">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <form id="checkout-form" class="checkout-form">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="checkout-name">Full Name</label>
+                        <input type="text" id="checkout-name" required placeholder="John Doe">
+                    </div>
+                    <div class="form-group">
+                        <label for="checkout-email">Email Address</label>
+                        <input type="email" id="checkout-email" required placeholder="john@example.com">
+                    </div>
+                    <div class="form-group col-span-2">
+                        <label for="checkout-address">Shipping Address</label>
+                        <input type="text" id="checkout-address" required placeholder="123 Nike Blvd, Sports City">
+                    </div>
+                    <div class="form-group">
+                        <label for="checkout-payment">Payment Mode</label>
+                        <select id="checkout-payment" class="styled-select">
+                            <option value="1">Online (UPI / NetBanking)</option>
+                            <option value="2">Cash on Delivery</option>
+                            <option value="3">Credit / Debit Card</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Order Pricing Recap -->
+                <div class="order-recap-box">
+                    <h4>Order Summary</h4>
+                    <div class="recap-row">
+                        <span>Items Total</span>
+                        <span id="recap-subtotal">₹0.00</span>
+                    </div>
+                    <div class="recap-row recap-discount hidden" id="recap-discount-row">
+                        <span>Discount</span>
+                        <span id="recap-discount">-₹0.00</span>
+                    </div>
+                    <div class="recap-row">
+                        <span>Carry Bag Charge</span>
+                        <span id="recap-bag-charge">₹0.00</span>
+                    </div>
+                    <div class="recap-row total-row">
+                        <span>Total Payable</span>
+                        <span id="recap-total">₹0.00</span>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="cancel-checkout-btn">Cancel</button>
+                    <button type="submit" class="btn btn-primary" id="submit-order-btn">
+                        Place Order <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin Panel Modal -->
+    <div class="modal-overlay hidden" id="admin-modal">
+        <div class="modal-content admin-modal-content">
+            <div class="modal-header">
+                <h2>Nike Store Admin Panel</h2>
+                <button class="close-modal-btn" id="close-admin-btn">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            
+            <div class="admin-grid">
+                <div class="admin-section">
+                    <h3>Update Stock</h3>
+                    <form id="admin-stock-form">
+                        <div class="form-group">
+                            <label for="stock-select-product">Select Product</label>
+                            <select id="stock-select-product" class="styled-select" required>
+                                <!-- Populated dynamically -->
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="stock-quantity">Add Stock Quantity</label>
+                            <input type="number" id="stock-quantity" min="1" required placeholder="e.g. 10">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Update Stock</button>
+                    </form>
+                </div>
+
+                <div class="admin-section">
+                    <h3>Change Price</h3>
+                    <form id="admin-price-form">
+                        <div class="form-group">
+                            <label for="price-select-product">Select Product</label>
+                            <select id="price-select-product" class="styled-select" required>
+                                <!-- Populated dynamically -->
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="new-price-val">New Price (₹)</label>
+                            <input type="number" id="new-price-val" min="1" required placeholder="e.g. 25000">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Update Price</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bill Invoice Success Modal -->
+    <div class="modal-overlay hidden" id="invoice-modal">
+        <div class="invoice-container">
+            <div class="invoice-header-bg">
+                <i class="fa-solid fa-circle-check success-check-icon"></i>
+                <h2>Payment Successful!</h2>
+                <p>Thank you for shopping at Nike Shop.</p>
+            </div>
+            <div class="invoice-body">
+                <div class="invoice-title">Official Purchase Invoice</div>
+                <div class="invoice-meta-grid">
+                    <div>
+                        <span class="meta-label">Date</span>
+                        <span class="meta-val" id="inv-date">June 01, 2026</span>
+                    </div>
+                    <div>
+                        <span class="meta-label">Payment Mode</span>
+                        <span class="meta-val" id="inv-payment">Online</span>
+                    </div>
+                </div>
+                
+                <table class="invoice-table">
+                    <thead>
+                        <tr>
+                            <th>Description</th>
+                            <th class="text-right">Qty</th>
+                            <th class="text-right">Unit Price</th>
+                            <th class="text-right">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td id="inv-shoe-name">Nike Air Max</td>
+                            <td class="text-right" id="inv-qty">1</td>
+                            <td class="text-right" id="inv-unit-price">₹20,000</td>
+                            <td class="text-right" id="inv-total-price">₹20,000</td>
+                        </tr>
+                        <tr id="inv-bag-row">
+                            <td>Carry Bag Charge</td>
+                            <td class="text-right" id="inv-bag-qty">1</td>
+                            <td class="text-right">₹50</td>
+                            <td class="text-right" id="inv-bag-total">₹50</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="invoice-summary-block">
+                    <div class="inv-summary-row">
+                        <span>Subtotal</span>
+                        <span id="inv-subtotal">₹20,000</span>
+                    </div>
+                    <div class="inv-summary-row discount-text hidden" id="inv-discount-row">
+                        <span>10% Limit Discount</span>
+                        <span id="inv-discount">-₹2,000</span>
+                    </div>
+                    <div class="inv-summary-row final-total-row">
+                        <span>Total Paid</span>
+                        <span id="inv-final-total">₹18,050</span>
+                    </div>
+                </div>
+                
+                <div class="invoice-footer">
+                    <p>Your order has been logged into <code>nikeshope.txt</code> successfully.</p>
+                    <button class="btn btn-primary btn-block" id="close-invoice-btn">Done</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="app.js"></script>
+</body>
+</html>

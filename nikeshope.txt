@@ -1,0 +1,30 @@
+
+========== NIKE SHOP BILL ==========
+Category    : Men
+Shoe Name   : Nike Shox
+Price       : $700000
+Quantity    : 2
+Total       : $1400000
+Discount    : $140000.0
+Bag Charge  : $100
+Payable Amt : $1260100.0
+Payment     : Cash
+===================================
+
+========== NIKE SHOP BILL ==========
+Category    : Men
+Shoe Name   : Nike Shox
+Price       : $700000
+Quantity    : 3
+Total       : $2100000
+Discount    : $210000.0
+Bag Charge  : $150
+Payable Amt : $1890150.0
+Payment     : Cash
+===================================
+Category: men, Shoe: Nike Pegasus, Qty: 1, Total Paid: $40050
+Category: kids, Shoe: Nike Kids Pegasus, Qty: 2, Total Paid: $56100
+Category: kids, Shoe: Nike Kids Flex, Qty: 1, Total Paid: $18050
+Category: men, Shoe: Nike Air Max DN, Qty: 10, Total Paid: $540500.0
+Category: men, Shoe: Nike Shox, Qty: 5, Total Paid: $3150250.0
+Category: men, Shoe: Nike Air Max DN, Qty: 20, Total Paid: $1081000.0
