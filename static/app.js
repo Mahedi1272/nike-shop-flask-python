@@ -77,6 +77,7 @@ const elements = {
     invoicePayment: document.getElementById('inv-payment'),
     invoiceDate: document.getElementById('inv-date'),
     closeInvoiceBtn: document.getElementById('close-invoice-btn'),
+    printInvoiceBtn: document.getElementById('print-invoice-btn'),
 
     // Admin Panel
     adminPanelLink: document.getElementById('admin-panel-link'),
@@ -702,6 +703,10 @@ function setupEventListeners() {
     // Success Invoice Modal closing
     elements.closeInvoiceBtn.addEventListener('click', () => {
         elements.invoiceModal.classList.add('hidden');
+    });
+
+    elements.printInvoiceBtn.addEventListener('click', () => {
+        window.print();
     });
 
     // Admin Panel Modal actions

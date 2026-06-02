@@ -1254,3 +1254,60 @@ button, input, select {
         gap: 30px;
     }
 }
+
+/* ==========================================================================
+   PRINT MEDIA STYLING (FOR INVOICE DOWNLOAD)
+   ========================================================================== */
+@media print {
+    /* Hide everything on the page */
+    body * {
+        visibility: hidden !important;
+    }
+    
+    /* Display only the invoice container */
+    .invoice-container, .invoice-container * {
+        visibility: visible !important;
+    }
+    
+    /* Position the invoice correctly on the printed page */
+    .invoice-container {
+        position: absolute;
+        left: 50%;
+        top: 0;
+        transform: translateX(-50%);
+        width: 100%;
+        max-width: 100%;
+        box-shadow: none !important;
+        border: 1px solid #ddd !important;
+        background: #ffffff !important;
+        color: #000000 !important;
+    }
+    
+    /* Make invoice header readable on white paper */
+    .invoice-header-bg {
+        background: #f3f4f6 !important;
+        color: #000000 !important;
+        border-bottom: 2px solid #e5e7eb !important;
+        padding: 20px !important;
+    }
+    
+    .invoice-header-bg h2, .invoice-header-bg p, .success-check-icon {
+        color: #000000 !important;
+        text-shadow: none !important;
+    }
+    
+    .invoice-body {
+        background: #ffffff !important;
+        padding: 20px !important;
+    }
+    
+    .meta-val, .final-total-row, td, th {
+        color: #000000 !important;
+    }
+    
+    /* Hide the footer actions (Download/Print and Done buttons) */
+    .invoice-footer div {
+        display: none !important;
+    }
+}
+
