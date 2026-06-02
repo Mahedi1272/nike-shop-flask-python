@@ -1,4 +1,4 @@
-
+import os
 
 # ..............................................................................................
 
@@ -173,6 +173,34 @@ def change_price(category):
     price = int(input("Enter new price: "))
     shoes[category][choice]["price"] = price  # price update
     print("✅ Price Updated Successfully!")
+# =================== VIEW BILLS FUNCTION ===================
+def view_bills():
+    """
+    Displays all bills saved in nikeshope.txt and the total count.
+    """
+    if not os.path.exists("nikeshope.txt"):
+        print("\n📂 No bills file found (nikeshope.txt). Buy some shoes first!")
+        return
+        
+    try:
+        f = open("nikeshope.txt", "r", encoding="utf-8")
+        content = f.read()
+        f.close()
+        
+        # Count separator to see total bills
+        bill_count = content.count("========== NIKE SHOP BILL ==========")
+        
+        if bill_count == 0:
+            print("\n📂 No bills recorded in file yet!")
+            return
+            
+        print(f"\n=====================================")
+        print(f"📖 ORDER HISTORY ({bill_count} Bills Found)")
+        print(f"=====================================")
+        print(content.strip())
+        print(f"=====================================")
+    except Exception as e:
+        print(f"❌ Error reading bills: {e}")
 
 # =================== MAIN FUNCTION ===================
 def main():
@@ -188,7 +216,8 @@ def main():
         print("2. Buy Shoes")
         print("3. Add Stock")
         print("4. Change Price")
-        print("5. Exit")
+        print("5. View Bills")
+        print("6. Exit")
         ch = input("Enter choice: ")
 
         if ch == "1":
@@ -200,6 +229,8 @@ def main():
         elif ch == "4":
             change_price(category)
         elif ch == "5":
+            view_bills()
+        elif ch == "6":
             print("🙏 Thank you for shopping!")
             break
         else:

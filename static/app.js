@@ -79,6 +79,14 @@ const elements = {
     closeInvoiceBtn: document.getElementById('close-invoice-btn'),
     printInvoiceBtn: document.getElementById('print-invoice-btn'),
 
+    // Bills Modal
+    billsToggleBtn: document.getElementById('bills-toggle-btn'),
+    viewBillsFooterLink: document.getElementById('view-bills-footer-link'),
+    billsModal: document.getElementById('bills-modal'),
+    closeBillsBtn: document.getElementById('close-bills-btn'),
+    billsCount: document.getElementById('bills-count'),
+    billsHistoryList: document.getElementById('bills-history-list'),
+
     // Admin Panel
     adminPanelLink: document.getElementById('admin-panel-link'),
     adminModal: document.getElementById('admin-modal'),
@@ -558,6 +566,76 @@ function renderInvoice(bill) {
 }
 
 // ==========================================================================
+// BILLS HISTORY ACTIONS
+// ==========================================================================
+
+async function openBillsModal() {
+    try {
+        const response = await fetch(`${API_BASE}/api/bills`);
+        const resData = await response.json();
+        
+        if (resData.success) {
+            elements.billsCount.textContent = resData.count;
+            renderBillsHistory(resData.bills);
+            elements.billsModal.classList.remove('hidden');
+        } else {
+            alert('Failed to load bills.');
+        }
+    } catch (err) {
+        console.error('Error fetching bills:', err);
+        alert('Could not fetch bills from server.');
+    }
+}
+
+function renderBillsHistory(bills) {
+    elements.billsHistoryList.innerHTML = '';
+    
+    if (bills.length === 0) {
+        elements.billsHistoryList.innerHTML = `
+            <div style="text-align: center; padding: 40px 0; color: var(--text-secondary);">
+                <i class="fa-solid fa-receipt" style="font-size: 48px; color: var(--text-muted); margin-bottom: 12px;"></i>
+                <p style="font-family: var(--font-heading); font-size: 16px; font-weight: 600;">No order history found.</p>
+                <p style="font-size: 13px; margin-top: 4px;">Place some orders first!</p>
+            </div>
+        `;
+        return;
+    }
+    
+    // Display in reverse order so newest bill is at the top
+    const reversedBills = [...bills].reverse();
+    
+    reversedBills.forEach((billText, idx) => {
+        const card = document.createElement('div');
+        card.className = 'bill-history-card';
+        
+        // Apply styling for beautiful code-like invoice blocks
+        Object.assign(card.style, {
+            background: 'var(--bg-tertiary)',
+            border: '1px solid var(--glass-border)',
+            borderRadius: '12px',
+            padding: '20px',
+            fontFamily: 'monospace',
+            fontSize: '13px',
+            lineHeight: '1.5',
+            whiteSpace: 'pre-wrap',
+            color: 'var(--text-primary)',
+            position: 'relative',
+            boxShadow: 'inset 0 0 10px rgba(0,0,0,0.2)'
+        });
+        
+        // Display natural number (original index) in the badge
+        const originalIndex = bills.length - idx;
+        
+        card.innerHTML = `
+            <span style="position: absolute; top: 12px; right: 15px; background: rgba(255, 79, 26, 0.1); color: var(--accent-primary); font-family: var(--font-heading); font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 50px;">Bill #${originalIndex}</span>
+            ${billText}
+        `;
+        
+        elements.billsHistoryList.appendChild(card);
+    });
+}
+
+// ==========================================================================
 // ADMIN PANEL ACTIONS
 // ==========================================================================
 
@@ -719,4 +797,14 @@ function setupEventListeners() {
     elements.closeAdminBtn.addEventListener('click', closeAdmin);
     elements.adminStockForm.addEventListener('submit', handleAdminStockSubmit);
     elements.adminPriceForm.addEventListener('submit', handleAdminPriceSubmit);
+
+    // Bills Modal actions
+    elements.billsToggleBtn.addEventListener('click', openBillsModal);
+    elements.viewBillsFooterLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        openBillsModal();
+    });
+    elements.closeBillsBtn.addEventListener('click', () => {
+        elements.billsModal.classList.add('hidden');
+    });
 }

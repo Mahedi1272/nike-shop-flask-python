@@ -36,6 +36,9 @@
                     <i class="fa-solid fa-magnifying-glass search-icon"></i>
                     <input type="text" id="search-input" placeholder="Search shoes...">
                 </div>
+                <button class="cart-btn" id="bills-toggle-btn" aria-label="View Saved Bills" style="background: var(--bg-tertiary); border: 1px solid var(--glass-border); color: var(--text-primary); box-shadow: none; margin-right: 8px;">
+                    <i class="fa-solid fa-receipt"></i>
+                </button>
                 <button class="cart-btn" id="cart-toggle-btn" aria-label="Open Shopping Cart">
                     <i class="fa-solid fa-bag-shopping"></i>
                     <span class="cart-badge" id="cart-badge-count">0</span>
@@ -125,6 +128,7 @@
                     <h4>Developer Mode</h4>
                     <ul>
                         <li><a href="#" id="admin-panel-link"><i class="fa-solid fa-lock"></i> Store Admin Panel</a></li>
+                        <li><a href="#" id="view-bills-footer-link"><i class="fa-solid fa-receipt"></i> View Saved Bills</a></li>
                     </ul>
                 </div>
             </div>
@@ -370,6 +374,21 @@
                         </button>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Order History & Bills Modal -->
+    <div class="modal-overlay hidden" id="bills-modal">
+        <div class="modal-content bills-modal-content" style="max-width: 650px;">
+            <div class="modal-header">
+                <h2>Order History & Bills (<span id="bills-count">0</span>)</h2>
+                <button class="close-modal-btn" id="close-bills-btn">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="bills-list-container" id="bills-history-list" style="max-height: 450px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; padding-right: 5px; margin-top: 15px;">
+                <!-- Dynamically populated bill cards -->
             </div>
         </div>
     </div>

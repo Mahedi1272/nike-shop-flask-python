@@ -205,6 +205,35 @@ def api_change_price():
         "new_price": shoes[category][shoe_id]["price"]
     })
 
+@app.route('/api/bills', methods=['GET'])
+def api_get_bills():
+    if not os.path.exists("nikeshope.txt"):
+        return jsonify({"success": True, "count": 0, "bills": []})
+        
+    try:
+        with open("nikeshope.txt", "r", encoding="utf-8") as f:
+            content = f.read()
+            
+        # Split by the header separator
+        raw_bills = content.split("========== NIKE SHOP BILL ==========")
+        bills_list = []
+        for rb in raw_bills:
+            rb_stripped = rb.strip()
+            if not rb_stripped:
+                continue
+            
+            # Reconstruct the separator line and format nicely
+            bill_block = "========== NIKE SHOP BILL ==========\n" + rb_stripped
+            bills_list.append(bill_block)
+            
+        return jsonify({
+            "success": True,
+            "count": len(bills_list),
+            "bills": bills_list
+        })
+    except Exception as e:
+        return jsonify({"success": False, "message": f"Could not read bills: {e}"}), 500
+
 # =================== STATIC FILE SERVERS ===================
 @app.route('/')
 def index():
