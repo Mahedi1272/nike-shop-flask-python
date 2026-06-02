@@ -112,7 +112,7 @@ def api_buy():
         return jsonify({"success": False, "message": "Quantity must be greater than 0"}), 400
 
     if qty > shoe["stock"]:
-        return jsonify({"success": False, "message": "❌ Stock kam hai, try less quantity"}), 400
+        return jsonify({"success": False, "message": f"❌ Stock kam hai! Available stock: {shoe['stock']}. Try less quantity."}), 400
 
     price = shoe["price"]
     total = price * qty

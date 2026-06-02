@@ -126,6 +126,7 @@ def buy_shoes(category):
                 print(f"Bag Charge  : ${bag_charge}")
                 print(f"Payable Amt : ${final_amount}")
                 print(f"Payment     : {payment_mode}")
+                print(f"Remaining Stock: {shoes[category][choice]['stock']}")
                 print("===================================")
 
                 # Save Bill to File
@@ -143,7 +144,7 @@ def buy_shoes(category):
                 f.write("===================================\n")
                 f.close()
             else:
-                print("❌ Stock kam hai, try less quantity")
+                print(f"❌ Stock kam hai! Available stock: {shoes[category][choice]['stock']}. Try less quantity.")
         else:
             print("❌ Invalid Shoe ID")
     except ValueError:

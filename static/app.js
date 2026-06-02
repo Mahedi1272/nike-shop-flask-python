@@ -172,7 +172,7 @@ function renderCatalog() {
         card.className = 'product-card';
         card.id = `product-card-${product.category}-${product.id}`;
 
-        let stockStatusText = 'In Stock';
+        let stockStatusText = `${product.stock} in Stock`;
         let stockClass = 'in-stock';
         if (product.stock === 0) {
             stockStatusText = 'Out of Stock';
@@ -490,7 +490,9 @@ async function handleCheckoutSubmit(e) {
 
         if (resData.success) {
             // Show Invoice success details
-            renderInvoice(resData.bill);
+            const bill = resData.bill;
+            bill.new_stock = resData.new_stock;
+            renderInvoice(bill);
 
             // Clear cart
             state.cart = {};
@@ -543,6 +545,13 @@ function renderInvoice(bill) {
     elements.invoiceDate.textContent = new Date().toLocaleDateString('en-IN', {
         year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit'
     });
+
+    const remainingStockEl = document.getElementById('inv-remaining-stock');
+    if (remainingStockEl && typeof bill.new_stock !== 'undefined') {
+        remainingStockEl.textContent = `Remaining Stock: ${bill.new_stock} items left`;
+    } else if (remainingStockEl) {
+        remainingStockEl.textContent = '';
+    }
 
     elements.invoiceModal.classList.remove('hidden');
 }
