@@ -78,6 +78,9 @@ const elements = {
     invoiceDate: document.getElementById('inv-date'),
     closeInvoiceBtn: document.getElementById('close-invoice-btn'),
     printInvoiceBtn: document.getElementById('print-invoice-btn'),
+    invoiceCustName: document.getElementById('inv-cust-name'),
+    invoiceCustEmail: document.getElementById('inv-cust-email'),
+    invoiceCustAddress: document.getElementById('inv-cust-address'),
 
     // Bills Modal
     billsToggleBtn: document.getElementById('bills-toggle-btn'),
@@ -480,7 +483,10 @@ async function handleCheckoutSubmit(e) {
         id: item.product.id,
         qty: item.qty,
         carry_bag: state.carryBagEnabled,
-        payment_mode: elements.checkoutPayment.options[elements.checkoutPayment.selectedIndex].text
+        payment_mode: elements.checkoutPayment.options[elements.checkoutPayment.selectedIndex].text,
+        customer_name: document.getElementById('checkout-name').value,
+        customer_email: document.getElementById('checkout-email').value,
+        shipping_address: document.getElementById('checkout-address').value
     };
 
     try {
@@ -554,6 +560,10 @@ function renderInvoice(bill) {
     elements.invoiceDate.textContent = new Date().toLocaleDateString('en-IN', {
         year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit'
     });
+
+    elements.invoiceCustName.textContent = bill.customer_name;
+    elements.invoiceCustEmail.textContent = bill.customer_email;
+    elements.invoiceCustAddress.textContent = bill.shipping_address;
 
     const remainingStockEl = document.getElementById('inv-remaining-stock');
     if (remainingStockEl && typeof bill.new_stock !== 'undefined') {

@@ -95,6 +95,10 @@ def buy_shoes(category):
         if choice in shoes[category]:
             qty = int(input("Enter quantity: "))
             if qty <= shoes[category][choice]["stock"]:  # stock check
+                customer_name = input("Enter your Name: ")
+                customer_email = input("Enter your Email: ")
+                shipping_address = input("Enter your Shipping Address: ")
+
                 price = shoes[category][choice]["price"]
                 total = price * qty  # total calculate
 
@@ -117,30 +121,36 @@ def buy_shoes(category):
 
                 # Print Bill
                 print("\n========== NIKE SHOP BILL ==========")
-                print(f"Category    : {category.title()}")
-                print(f"Shoe Name   : {shoes[category][choice]['name']}")
-                print(f"Price       : ${price}")
-                print(f"Quantity    : {qty}")
-                print(f"Total       : ${total}")
-                print(f"Discount    : ${discount}")
-                print(f"Bag Charge  : ${bag_charge}")
-                print(f"Payable Amt : ${final_amount}")
-                print(f"Payment     : {payment_mode}")
+                print(f"Customer Name: {customer_name}")
+                print(f"Email        : {customer_email}")
+                print(f"Address      : {shipping_address}")
+                print(f"Category     : {category.title()}")
+                print(f"Shoe Name    : {shoes[category][choice]['name']}")
+                print(f"Price        : ${price}")
+                print(f"Quantity     : {qty}")
+                print(f"Total        : ${total}")
+                print(f"Discount     : ${discount}")
+                print(f"Bag Charge   : ${bag_charge}")
+                print(f"Payable Amt  : ${final_amount}")
+                print(f"Payment      : {payment_mode}")
                 print(f"Remaining Stock: {shoes[category][choice]['stock']}")
                 print("===================================")
 
                 # Save Bill to File
                 f = open("nikeshope.txt", "a")
                 f.write("\n========== NIKE SHOP BILL ==========\n")
-                f.write(f"Category    : {category.title()}\n")
-                f.write(f"Shoe Name   : {shoes[category][choice]['name']}\n")
-                f.write(f"Price       : ${price}\n")
-                f.write(f"Quantity    : {qty}\n")
-                f.write(f"Total       : ${total}\n")
-                f.write(f"Discount    : ${discount}\n")
-                f.write(f"Bag Charge  : ${bag_charge}\n")
-                f.write(f"Payable Amt : ${final_amount}\n")
-                f.write(f"Payment     : {payment_mode}\n")
+                f.write(f"Customer Name: {customer_name}\n")
+                f.write(f"Email        : {customer_email}\n")
+                f.write(f"Address      : {shipping_address}\n")
+                f.write(f"Category     : {category.title()}\n")
+                f.write(f"Shoe Name    : {shoes[category][choice]['name']}\n")
+                f.write(f"Price        : ${price}\n")
+                f.write(f"Quantity     : {qty}\n")
+                f.write(f"Total        : ${total}\n")
+                f.write(f"Discount     : ${discount}\n")
+                f.write(f"Bag Charge   : ${bag_charge}\n")
+                f.write(f"Payable Amt  : ${final_amount}\n")
+                f.write(f"Payment      : {payment_mode}\n")
                 f.write("===================================\n")
                 f.close()
             else:

@@ -94,6 +94,9 @@ def api_buy():
     qty = data.get("qty", 1)
     carry_bag = data.get("carry_bag", False)
     payment_mode = data.get("payment_mode", "Online")
+    customer_name = data.get("customer_name", "Anonymous")
+    customer_email = data.get("customer_email", "N/A")
+    shipping_address = data.get("shipping_address", "N/A")
 
     if not category or not shoe_id:
         return jsonify({"success": False, "message": "Missing category or shoe ID"}), 400
@@ -129,15 +132,18 @@ def api_buy():
         # Save Bill to File matching CLI formatting
         with open("nikeshope.txt", "a", encoding="utf-8") as f:
             f.write("\n========== NIKE SHOP BILL ==========\n")
-            f.write(f"Category    : {category.title()}\n")
-            f.write(f"Shoe Name   : {shoe['name']}\n")
-            f.write(f"Price       : ${price}\n")
-            f.write(f"Quantity    : {qty}\n")
-            f.write(f"Total       : ${total}\n")
-            f.write(f"Discount    : ${discount}\n")
-            f.write(f"Bag Charge  : ${bag_charge}\n")
-            f.write(f"Payable Amt : ${final_amount}\n")
-            f.write(f"Payment     : {payment_mode}\n")
+            f.write(f"Customer Name: {customer_name}\n")
+            f.write(f"Email        : {customer_email}\n")
+            f.write(f"Address      : {shipping_address}\n")
+            f.write(f"Category     : {category.title()}\n")
+            f.write(f"Shoe Name    : {shoe['name']}\n")
+            f.write(f"Price        : ${price}\n")
+            f.write(f"Quantity     : {qty}\n")
+            f.write(f"Total        : ${total}\n")
+            f.write(f"Discount     : ${discount}\n")
+            f.write(f"Bag Charge   : ${bag_charge}\n")
+            f.write(f"Payable Amt  : ${final_amount}\n")
+            f.write(f"Payment      : {payment_mode}\n")
             f.write("===================================\n")
     except Exception as e:
         print(f"[ERROR] Could not log purchase to file: {e}")
@@ -146,6 +152,9 @@ def api_buy():
         "success": True,
         "message": "Order placed successfully!",
         "bill": {
+            "customer_name": customer_name,
+            "customer_email": customer_email,
+            "shipping_address": shipping_address,
             "category": category.title(),
             "name": shoe["name"],
             "price": price,

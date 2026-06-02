@@ -1301,7 +1301,7 @@ button, input, select {
         padding: 20px !important;
     }
     
-    .meta-val, .final-total-row, td, th {
+    .meta-val, .meta-label, .final-total-row, td, th {
         color: #000000 !important;
     }
     
